@@ -3,16 +3,20 @@
 ## How to install/setup MongoDB on your machine?
 
 **Main Link**
+
 https://www.mongodb.com/
 
 **Download/Useful Links**
 https://www.mongodb.com/try/download/community - mongoDB community server (use MSI installer)
+
 https://www.mongodb.com/try/download/shell?jmp=docs - mongosh (mongo shell)
+
 https://www.mongodb.com/try/download/database-tools - Database Tools (Might come in handy, use the MSI)
 
 ### Data Links
 
 MOVIE DATA: https://github.com/erik-sytnyk/movies-list/blob/master/db.json
+
 PRODUCT DATA: https://fakestoreapi.com/products
 
 Other data provided in the .json files
