@@ -241,3 +241,107 @@ For example, we don't want to have a store DB where some products are missing so
 - Where do I need my data? (Defines required collections and field groupings.)
 - Which kind of data or info do I want to display? (Define Queries.)
 - How often do I write or change my data? (Define whether you need to optimize.)
+
+## Relationship
+
+### One to One - Embedded
+
+A problem that arises when using references to establish a relationship between two documents is that it requires two steps to
+first .findOne() the original document (e.g. a Patient document), and then use the ID of the related document to .findOne() that one.
+
+#### Example, with references:
+- db.patients.insertOne({name: "Ivan", age: 30, diseaseSummary: "summary-ivan-1"})
+- db.diseaseSummaries.insertOne({_id: "summary-ivan-1", diseases: ["cold", "broken arm"]})
+
+So, for hard 1-1 relationships, it's better to go with nested documents.
+
+#### Example
+- db.patients.insertOne({name: "Ivan", age: 30, diseaseSummary: ["cold", "broken arm"]})
+
+### One to One - References
+
+Sometimes, we would like to structure the data to be more friendly to analytics and statistics.
+With something like a collection of cars, and a collection of car owners we might want to analyze just the car data.
+
+#### Example
+- db.carOwners.insertOne({name: "Ivan", car: {model: "Lada", price: 2000}})
+- db.cars.insertOne({model: "Lada", price: 2000, owner: ObjectId("car_owner_id")})
+
+### One to Many - Embedded
+
+In some cases, one document will have a relationship with many documents. 
+One such case is Q/A or Quiz questions. A Question can have multiple answers.
+If we go with references, we still face the same problem as before. That one extra request. So, embedding might be beter here,
+and it makes sense for the data to be modelled like this, because you always need both the questions and answers at the same time.
+Questions don't usually have thousands of answers, so you don't risk hitting the 16 MB limit.
+EVERY CASE IS DIFFERENT! Model your data the way you need it!
+
+#### Example
+
+- db.questionThreads.insertOne(
+{creator: "Ivan", 
+question: "How often do I get billed?",
+answers: [{answer: "Monthly."}, {answer: "Yearly."}]
+})
+
+### One to Many - References
+
+Another One to Many example would be cities and citizens.
+Theoretically we could embed, but from an app perspective you might be interested about fetching cities, but not the people.
+And it's not feasible to embed the citizens' ID's within the city because cities have thousands, if not millions of citizens.
+This is a good place to use references. 
+
+- db.cities.insertMany([
+{name: "Skopje", coordinates: {lat: 21, lng: 42}},
+{name: "Nish", coordinates: {lat: 24, lng: 35}}
+])
+
+- db.citizens.insertMany([
+{name: "Ivan", age: 30, cityId: ObjectId("Skopje")},
+{name: "Nikola", age: 25, cityId: ObjectId("Nish")}
+])
+
+### Many to Many - Embedded
+
+When working with Many to Many relationships, often times this is done through an intermediary table.
+You could go full SQL way, but depending on your data needs you might even go with a combination of referenced and embedding,
+or fully commit to embedding data.
+
+The disadvantage of fully embedding is duplicate data. If you do a lot of embedding, it can lead to a lot of duplicate embedded documents.
+One such example would be the cars and car owners. Multiple users can own the same car model, so it wouldn't make sense to duplicate the car model
+everywhere. Another example would be the shop with customers and orders.
+
+
+- db.shopCustomers.insertOne({
+name: "Ivan",
+age: 30
+})
+
+- db.shopCustomers.updateOne(
+{_id: ObjectId("customer_id")},
+{$set: {orders: [{title: "A Book", price: 10.99, qty: 1}]}}
+)
+
+### Many to Many - References
+
+Another example of Many to Many is with books and authors. A Book can have multiple authors, and an author will usually write multiple books.
+With embedded documents, this might be potentially problematic. We would always want the latest data on the authors, and their fields (such as age)
+might change often enough.
+
+- db.books.insertMany([
+{title: "Book 1"},
+{title: "Book 2"}
+])
+
+- db.authors.insertMany([
+{name: "John"},
+{name: "Maria"}
+])
+
+- db.books.updateOne(
+{_id: ObjectId("")},
+{$set: {authors: [
+ObjectId("author_id"),
+ObjectId("other_author_id")
+]}}
+)
