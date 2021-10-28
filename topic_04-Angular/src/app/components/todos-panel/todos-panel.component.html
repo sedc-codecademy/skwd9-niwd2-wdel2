@@ -1,9 +1,17 @@
-<div class="todo-card">
-  <div class="todo-card__title">Title</div>
-  <div class="todo-card__date">2021-10-28</div>
+<!-- <div class="todo-card" *ngFor="let element of todos">
+  <div class="todo-card__title">{{ element.title }}</div>
+  <div class="todo-card__date">{{ element.date }}</div>
   <div class="todo-card__description">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima autem,
-    sapiente fuga iste ab, sed quidem delectus itaque illo fugiat corrupti neque
-    aperiam voluptates perspiciatis.
+    {{ element.description }}
   </div>
-</div>
+</div> -->
+<app-todo-card
+  (displayTodo)="onDisplayTodo($event)"
+  [currentTodo]="element"
+  *ngFor="let element of todos"
+></app-todo-card>
+<!-- 
+<app-todo-card [currentTodo]="todos[0]"></app-todo-card>
+<app-todo-card [currentTodo]="todos[1]"></app-todo-card>
+<app-todo-card [currentTodo]="todos[2]"></app-todo-card>
+<app-todo-card [currentTodo]="todos[3]"></app-todo-card> -->

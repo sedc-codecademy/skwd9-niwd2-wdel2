@@ -1,0 +1,7 @@
+<div class="todo-card" (click)="triggerDisplayTodo(currentTodo)">
+  <div class="todo-card__title">{{ currentTodo.title }}</div>
+  <div class="todo-card__progress">
+    <!-- <progress max="100" value="{{ currentTodo.progress }}"></progress> -->
+    <progress max="100" [value]="currentTodo.progress"></progress>
+  </div>
+</div>

@@ -12,7 +12,7 @@ export class TodosPanelComponent implements OnInit {
   todos: Todo[] = [
     {
       _id: 1,
-      title: 'Title 1',
+      title: 'Walk the dog',
       progress: 10,
       description: 'Lorem ipsum dolor sit amet.',
       date: '2021-10-26',
@@ -44,4 +44,8 @@ export class TodosPanelComponent implements OnInit {
   ];
 
   ngOnInit(): void {}
+
+  onDisplayTodo(todoEvent: Todo) {
+    console.log(todoEvent);
+  }
 }
