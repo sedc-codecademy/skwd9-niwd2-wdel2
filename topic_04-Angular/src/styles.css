@@ -54,7 +54,7 @@ body {
 }
 
 .active {
-    border-bottom: 3px solid var(--color-green);
+  border-bottom: 3px solid var(--color-green);
 }
 
 .btn {
@@ -105,7 +105,31 @@ body {
   color: var(--color-red);
 }
 
+.todo-card__email {
+  font-size: 1.6rem;
+  color: var(--color-green);
+}
+
 progress {
   padding: 2rem;
   width: 100%;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.control-input {
+  padding: 1rem;
+}
+
+.control-label {
+  font-size: 1.8rem;
+}
+
+input.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid {
+  border: 2px solid var(--color-red);
 }

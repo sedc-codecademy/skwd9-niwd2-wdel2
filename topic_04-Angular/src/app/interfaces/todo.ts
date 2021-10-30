@@ -4,4 +4,5 @@ export interface Todo {
   progress: number;
   description?: string;
   date: string | Date;
+  email?: string;
 }

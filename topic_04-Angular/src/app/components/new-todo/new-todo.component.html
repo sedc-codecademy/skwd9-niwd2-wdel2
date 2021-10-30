@@ -1,0 +1,68 @@
+<div class="card">
+  <form [formGroup]="todoForm" (ngSubmit)="onSubmitEvent()">
+    <div class="control-group">
+      <label for="title" class="control-label">Title</label>
+      <input
+        formControlName="todoTitle"
+        type="text"
+        class="control-input"
+        id="title"
+        autocomplete="off"
+      />
+    </div>
+    <p
+      [ngStyle]="{ 'font-size': '1.6rem' }"
+      *ngIf="
+        todoForm.controls.todoTitle.touched &&
+        todoForm.controls.todoTitle.invalid
+      "
+    >
+      This field is required!
+    </p>
+    <div class="control-group">
+      <label for="description" class="control-label">Description</label>
+      <textarea
+        formControlName="todoDescription"
+        id="description"
+        cols="30"
+        rows="10"
+        class="control-input"
+      ></textarea>
+    </div>
+    <div class="control-group">
+      <label for="date" class="control-label">Date</label>
+      <input
+        formControlName="todoDate"
+        type="date"
+        class="control-input"
+        id="date"
+      />
+    </div>
+
+    <div class="expenses-container">
+      <h4>Your expenses!</h4>
+      <div
+        class="control-group"
+        *ngFor="let control of getExpensesControls(); let i = index"
+        formArrayName="expenses"
+      >
+        <input type="text" class="control-input" [formControlName]="i" />
+      </div>
+      <button
+        type="button"
+        [ngStyle]="{ 'margin-bottom': '1rem' }"
+        class="btn btn-danger"
+        (click)="onAddExpense()"
+      >
+        Add Expense
+      </button>
+    </div>
+
+    <button [disabled]="todoForm.invalid" type="submit" class="btn btn-primary">
+      Submit
+    </button>
+    <!-- <p [ngStyle]="{ 'font-size': '1.8rem' }">
+      {{ displayFormError }}
+    </p> -->
+  </form>
+</div>

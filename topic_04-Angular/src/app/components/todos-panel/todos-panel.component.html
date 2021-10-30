@@ -5,13 +5,51 @@
     {{ element.description }}
   </div>
 </div> -->
+
+<!-- array.forEach((element) => {
+  element.sendToTodoCard();
+}) -->
 <app-todo-card
   (displayTodo)="onDisplayTodo($event)"
   [currentTodo]="element"
   *ngFor="let element of todos"
 ></app-todo-card>
-<!-- 
+<!--
 <app-todo-card [currentTodo]="todos[0]"></app-todo-card>
 <app-todo-card [currentTodo]="todos[1]"></app-todo-card>
 <app-todo-card [currentTodo]="todos[2]"></app-todo-card>
 <app-todo-card [currentTodo]="todos[3]"></app-todo-card> -->
+<hr />
+
+<div
+  class="todo-card"
+  *ngIf="currentDisplayTodo"
+  [ngStyle]="{ 'margin-top': '16px' }"
+  [ngClass]="currentDisplayTodo.progress === 100 ? 'green' : 'orange'"
+>
+  <div class="todo-card__title">{{ currentDisplayTodo.title | uppercase }}</div>
+  <div class="todo-card__progress">
+    <progress max="100" [value]="currentDisplayTodo.progress"></progress>
+  </div>
+  <div class="todo-card__date">
+    {{ currentDisplayTodo.date | date:"fullDate" }}
+  </div>
+  <div class="todo-card__email">
+    {{ currentDisplayTodo.email | lowercase }}
+  </div>
+  <div class="price-pipe" [ngStyle]="{ 'font-size': '2rem' }">
+    {{ basePrice | currency: "EUR" }}
+  </div>
+  <div class="price-pipe" [ngStyle]="{ 'font-size': '2rem' }">
+    {{ convertToCurrency("EUR", 45) }}
+  </div>
+  <!-- {min-integer-digits}.{min-decimal-digits}-{max-decimal-digits} -->
+  <p [ngStyle]="{ 'font-size': '2rem' }">
+    Progress: {{ currentDisplayTodo.progress | number: "1.0-2" }}
+  </p>
+  <p [ngStyle]="{ 'font-size': '2rem' }">
+    Progress Percentage:
+    {{ currentDisplayTodo.progress / 100 | percent: "1.0-2" }}
+  </p>
+  <div class="todo-card__description">{{ currentDisplayTodo.description | shorten: 10 }}</div>
+</div>

@@ -1,7 +1,12 @@
-.todo-card {
-    color: black;
-    font-size: 20px;
-    padding: 6px;
-    background-color: orange;
-    margin-bottom: 4px;
+/* .green {
+  background-color: green;
 }
+
+.orange {
+  background-color: orangered;
+  color: white;
+}
+
+.orange > .todo-card__date {
+    color: white;
+} */
