@@ -1,5 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Todo } from '../interfaces/todo';
+import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -43,9 +48,61 @@ export class TodoService {
     },
   ];
 
-  constructor() {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  getAllTodos(): Todo[] {
-    return this.todos;
+  todosSubject$ = new Subject<Todo[]>();
+
+  getAllTodos() {
+    // return this.todos;
+    // http://localhost:4000/api/todos
+    this.http
+      .get(`${environment.baseUrl}/todos`)
+      // .pipe(map((todos) => {
+      //   return todos as Todo[]
+      // }))
+      .pipe(map((todos) => todos as Todo[]))
+      .subscribe(
+        (payload: Todo[]) => {
+          this.todosSubject$.next(payload);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+
+  createNewTodo(title: string, description: string, todoDate: string) {
+    const newTodo: Todo = {
+      progress: 0,
+      title: title,
+      description: description,
+      date: todoDate,
+    };
+    // this.todos.push(newTodo);
+    this.http.post(`${environment.baseUrl}/todos`, newTodo).subscribe(
+      (response) => {
+        console.log(response);
+        this.router.navigate(['todos']);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  updateTodoProgress(progressUpdate: string, _id: string | number | undefined) {
+    this.http
+      .patch(`${environment.baseUrl}/todos/${_id}`, {
+        progress: parseInt(progressUpdate),
+      })
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.getAllTodos();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }

@@ -8,6 +8,8 @@ import { TodoCardComponent } from './components/todo-card/todo-card.component';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { NewTodoComponent } from './components/new-todo/new-todo.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './modules/app-routing/app-routing.module';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     TodosPanelComponent,
     TodoCardComponent,
     ShortenPipe,
-    NewTodoComponent
+    NewTodoComponent,
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

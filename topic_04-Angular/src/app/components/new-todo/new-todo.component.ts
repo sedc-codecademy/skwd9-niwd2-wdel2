@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
   selector: 'app-new-todo',
@@ -7,9 +8,9 @@ import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '
   styleUrls: ['./new-todo.component.css'],
 })
 export class NewTodoComponent implements OnInit {
-  constructor() {}
+  constructor(private todoService: TodoService) {}
   todoForm: FormGroup;
-  maxDescriptionLength: number = 8;
+  maxDescriptionLength: number = 64;
   blockedTitles: string[] = ['Bad', 'Title', 'Ivan'];
   // displayFormError: string;
 
@@ -34,8 +35,9 @@ export class NewTodoComponent implements OnInit {
   }
 
   onSubmitEvent() {
-    console.log(this.todoForm);
+    // console.log(this.todoForm);
     const { todoTitle, todoDescription, todoDate } = this.todoForm.value;
+    this.todoService.createNewTodo(todoTitle, todoDescription, todoDate);
     // if (this.todoForm.invalid) {
     //   this.displayFormError = 'Please enter all fields properly!';
     // }

@@ -133,3 +133,12 @@ input.ng-touched.ng-invalid,
 textarea.ng-touched.ng-invalid {
   border: 2px solid var(--color-red);
 }
+
+.progress-form {
+  background-color: var(--color-dark);
+  padding: 6px;
+  font-weight: 100;
+  color: var(--color-light);
+  border-radius: var(--default-border-radius);
+  margin-top: 1rem;
+}
