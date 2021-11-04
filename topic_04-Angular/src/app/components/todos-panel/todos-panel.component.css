@@ -1,4 +1,4 @@
-/* .green {
+.green {
   background-color: green;
 }
 
@@ -9,4 +9,4 @@
 
 .orange > .todo-card__date {
     color: white;
-} */
+}

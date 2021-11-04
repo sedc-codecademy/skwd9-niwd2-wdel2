@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -7,7 +8,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit, AfterViewInit {
-  constructor() {
+  constructor(private authService: AuthService) {
     // console.log('constructor', this.isRegistered);
   }
   @ViewChild('registerForm') registerForm: NgForm;
@@ -24,7 +25,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   onSubmitRegister() {
     const { email, password } = this.registerForm.value;
-    console.log(email, password);
-    
+    this.authService.registerWithEmailAndPassword(email, password);
   }
 }

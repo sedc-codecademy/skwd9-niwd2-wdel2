@@ -1,0 +1,9 @@
+.todo-card__date {
+  background-color: #b2bec3;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.todo-card__year {
+  font-weight: bold;
+}

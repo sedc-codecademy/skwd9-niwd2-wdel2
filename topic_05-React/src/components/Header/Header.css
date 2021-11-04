@@ -1,0 +1,26 @@
+
+.container {
+    text-align: center;
+  }
+  
+  .header {
+    padding: 10px;
+    background-color: #2d3436;
+  }
+  
+  .header__nav {
+    display: flex;
+  }
+  
+  .header__brand {
+    font-size: 24px;
+    color: #00b894;
+  }
+  
+  .header__nav-item {
+    width: 50%;
+    padding: 10px;
+    font-size: 18px;
+    color: #dfe6e9;
+  }
+  

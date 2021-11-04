@@ -44,7 +44,7 @@ export class AuthService {
           credentials: userCreds,
         });
       } catch (error) {
-        resolve(error);
+        reject(error);
       }
     });
   }

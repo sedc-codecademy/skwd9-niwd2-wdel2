@@ -1,0 +1,9 @@
+.todo-card {
+  background-color: #dfe6e9;
+  padding: 8px;
+  border-radius: 8px;
+  width: 75%;
+  margin: 8px auto;
+  display: flex;
+  justify-content: space-between;
+}

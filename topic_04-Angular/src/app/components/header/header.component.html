@@ -1,10 +1,11 @@
 <header class="header">
   <div class="container__toolbar">
     <div class="header__brand">Task Tracker</div>
-    <div class="btn-container">
+    <div class="btn-container" *ngIf="!currentUser">
       <button class="btn btn-primary btn-header" routerLink="auth/login">Login</button>
       <button class="btn btn-danger btn-header" routerLink="auth/register">Register</button>
     </div>
+    <button (click)="onLogoutUser()" *ngIf="currentUser" class="btn btn-danger btn-header">Logout</button>
   </div>
   <nav class="header__nav">
     <div class="header__nav-item" routerLink="new" routerLinkActive="active">Add Todo</div>

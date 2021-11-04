@@ -1,1 +1,14 @@
-<p>login works!</p>
+<div class="card">
+    <h1 [ngStyle]="{'font-weight': '100'}">Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+        <div class="control-group">
+            <label for="email" class="control-label">Email</label>
+            <input type="text" class="control-input" id="email" autocomplete="off" formControlName="email">
+        </div>
+        <div class="control-group">
+            <label for="password" class="control-label">Password</label>
+            <input type="password" class="control-input" autocomplete="off" id="password" formControlName="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
