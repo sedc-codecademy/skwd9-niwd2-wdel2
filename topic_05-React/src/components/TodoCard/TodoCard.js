@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "../Card/Card";
 import TodoDate from "../TodoDate/TodoDate";
 
 import "./TodoCard.css";
@@ -13,15 +14,31 @@ import "./TodoCard.css";
 
 const TodoCard = (props) => {
   // console.log(props);
+  // document.querySelector('button').addEventListener('click', () => {});
+  // const [title, setTitle] = useState(props.title);
+  // let title = props.title;
+
+  // const clickHandler = () => {
+  //   console.log("Hello World!");
+  //   title = "Updated!";
+  //   console.log(title);
+  //   setTitle("Updated Title!");
+  // };
+
   return (
-    <div className="todo-card">
-      <div className="todo-card__details">
-        <div className="todo-card__title">{props.title}</div>
-        <div className="todo-card__progress">{props.progress.toFixed(2)}%</div>
-        <div className="todo-card__description">{props.description}</div>
-      </div>
-      <TodoDate date={props.date} />
-    </div>
+    <li>
+      <Card className="todo-card">
+        <div className="todo-card__details">
+          <div className="todo-card__title">{props.title}</div>
+          <div className="todo-card__progress">
+            {props.progress.toFixed(2)}%
+          </div>
+          <div className="todo-card__description">{props.description}</div>
+        </div>
+        <TodoDate date={props.date} />
+        {/* <button onClick={clickHandler}>Change Title</button> */}
+      </Card>
+    </li>
   );
 };
 

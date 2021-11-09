@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "../Card/Card";
 import "./TodoDate.css";
 
 const TodoDate = (props) => {
@@ -11,11 +12,11 @@ const TodoDate = (props) => {
   };
 
   return (
-    <div className="todo-card__date">
+    <Card className="todo-card__date">
       <div className="todo-card__month">{dateObj.month}</div>
       <div className="todo-card__year">{dateObj.year}</div>
       <div className="todo-card__day">{dateObj.day}</div>
-    </div>
+    </Card>
   );
 };
 
