@@ -68,7 +68,89 @@ Then, the code contains an @Input() decorator with the childItem property so dat
 ```
 
 ### Event Binding
+Event binding lets you listen for and respond to user actions such as keystrokes, mouse movements, clicks, and touches.
+
+To bind to an event you use the Angular event binding syntax. 
+This syntax consists of a target event name within parentheses to the left of an equal sign, and a quoted template statement to the right. 
+In the following example, the target event name is click and the template statement is onSave().
+
+```
+<button (click)="onSave()">Save</button>
+```
+
+You can also create your own events in a child component with EventEmitter, which you can listen to from the parent component.
+
+You declare such an EventEmitter with the @Output decorator.
+
+#### Child Component
+```
+@Output() deleteRequest = new EventEmitter<Item>();
+
+delete() {
+  this.deleteRequest.emit(this.item);
+}
+```
+#### Child Template
+```
+<img src="{{itemImageUrl}}" [style.display]="displayNone">
+<span [style.text-decoration]="lineThrough">{{ item.name }}
+</span>
+<button (click)="delete()">Delete</button>
+```
+
+#### Parent Component
+
+```
+deleteItem(item) {
+  // do stuff with item
+}
+```
+
+#### Parent Template
+```
+<app-item-detail (deleteRequest)="deleteItem($event)" [item]="currentItem"></app-item-detail>
+```
+
 ### Two Way Data Binding
+
+Two-way binding gives components in your application a way to share data. 
+
+Use two-way binding to listen for events and update values simultaneously between parent and child components.
+
+Two-way binding combines property binding with event binding:
+
+* Property binding sets a specific element property.
+* Event binding listens for an element change event.
+
+Angular's two-way binding syntax is a combination of square brackets and parentheses, [()]. 
+
+The [()] syntax combines the brackets of property binding, [], with the parentheses of event binding, (), as follows.
+
+There’s one directive in Angular >= 2.x that implements two-way data binding: ngModel.
+
+```
+<input [(ngModel)]="username">
+<p>Hello {{username}}!</p>
+```
+
+If we take a look at the source code, we’ll notice that ngModel actually comes with a property and event binding as well. 
+
+The property binding part of [ngModel] takes care of updating the underlying input DOM element.
+
+The event binding part of (ngModel) takes care of catching the (ngModelChange) event and notifies the outside world when there was a change in the DOM. 
+
+To further understand this, we can divide ngModel into two parts.
+
+```
+<input [ngModel]="username" (ngModelChange)="username = $event">
+
+<p>Hello {{username}}!</p>
+```
+
+$event is the payload of the emitted event. 
+In other words, ngModelChange takes care of extracting target.value from the inner $event payload, and simply emits that
+
+Last but not least, since writing username and ngModel twice is still too much, Angular allows the shorthand syntax using [()].
 
 ## Lifecycle Hooks
 
