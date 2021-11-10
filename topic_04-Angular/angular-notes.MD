@@ -1,17 +1,18 @@
 # Angular Notes
 
 ## Components
+
 Components are the main building block for Angular applications. Each component consists of:
 
-* An HTML template that declares what renders on the page
-* A Typescript class that defines behavior
-* A CSS selector that defines how the component is used in a template
-* Optionally, CSS styles applied to the template
+- An HTML template that declares what renders on the page
+- A Typescript class that defines behavior
+- A CSS selector that defines how the component is used in a template
+- Optionally, CSS styles applied to the template
 
 Every component is a class with a @Component decorator.
 The base syntax should look like this:
 
-@Component({
+````@Component({
   selector: 'app-component-overview',
   templateUrl: './component-overview.component.html',
   styleUrls: ['./component-overview.component.css']
@@ -20,6 +21,7 @@ The base syntax should look like this:
 export class ComponentOverviewComponent {
 
 }
+```
 
 To create a component you can use the CLI command ng generate component path/name-of-component.
 
@@ -45,3 +47,4 @@ To create a component you can use the CLI command ng generate component path/nam
 ## HTTP Module
 
 ## Feature Modules & Lazy Loading
+````
