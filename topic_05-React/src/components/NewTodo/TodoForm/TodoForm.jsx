@@ -42,7 +42,7 @@ const TodoForm = (props) => {
     e.preventDefault();
     const todoData = {
       title: enteredTitle,
-      date: new Date(enteredDate),
+      date: enteredDate,
       description: enteredDescription,
     };
     // console.log(userInput);

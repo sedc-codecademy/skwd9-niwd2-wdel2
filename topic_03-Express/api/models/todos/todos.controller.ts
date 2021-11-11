@@ -37,6 +37,7 @@ export default class TodosController {
     res: Response,
     next: NextFunction
   ) {
+    console.log(req.body);
     const todoProgress = req.body.progress;
     const todoId = req.params.id;
 

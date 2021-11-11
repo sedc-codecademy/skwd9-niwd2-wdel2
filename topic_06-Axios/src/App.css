@@ -1,0 +1,23 @@
+.App {
+    padding-top: 4rem;
+}
+
+.products-form {
+  display: flex;
+  flex-direction: column;
+  width: 24rem;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: #f5f6fa;
+  border-radius: 16px;
+}
+
+input,
+select {
+  padding: 0.8rem;
+  margin-bottom: 8px;
+}
+
+button {
+  padding: 0.4rem;
+}

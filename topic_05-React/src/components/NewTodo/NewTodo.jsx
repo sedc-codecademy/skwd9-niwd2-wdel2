@@ -6,8 +6,7 @@ const NewTodo = (props) => {
   const saveTodoDataHandler = (enteredTodoData) => {
     const todoData = {
       ...enteredTodoData,
-      _id: Math.random().toString(),
-      progress: 0
+      progress: 0,
     };
     // console.log(todoData);
     props.onAddTodo(todoData);

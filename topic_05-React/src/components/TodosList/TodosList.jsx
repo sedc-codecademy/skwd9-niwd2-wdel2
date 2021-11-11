@@ -1,5 +1,6 @@
 import React from "react";
 import TodoCard from "../TodoCard/TodoCard";
+import "./TodosList.css";
 
 const TodosList = (props) => {
   return (
@@ -7,6 +8,7 @@ const TodosList = (props) => {
       {props.items.map((todo) => (
         <TodoCard
           key={todo._id}
+          id={todo._id}
           title={todo.title}
           date={todo.date}
           progress={todo.progress}

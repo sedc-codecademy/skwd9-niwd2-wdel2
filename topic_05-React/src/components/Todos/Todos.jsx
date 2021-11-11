@@ -38,6 +38,7 @@
 import React, { useState } from "react";
 import Card from "../Card/Card";
 import TodoFilter from "../TodoFilter/TodoFilter";
+import TodosChart from "../TodosChart/TodosChart";
 import TodosList from "../TodosList/TodosList";
 
 const Todos = (props) => {
@@ -46,7 +47,9 @@ const Todos = (props) => {
     setFilteredYear(selectedYear);
   };
 
-  const filteredTodos = props.todos.filter((item) => item.date.getFullYear().toString() === filteredYear);
+  const filteredTodos = props.todos.filter(
+    (item) => item.date.getFullYear().toString() === filteredYear
+  );
 
   return (
     <Card className="todos">
@@ -54,6 +57,7 @@ const Todos = (props) => {
         onChangeFilter={filterChangeHandler}
         selected={filteredYear}
       />
+      <TodosChart todos={filteredTodos} />
       <TodosList items={filteredTodos} />
     </Card>
   );

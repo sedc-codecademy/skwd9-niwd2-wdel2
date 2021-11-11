@@ -4,7 +4,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
   let origin = req.headers.origin || req.headers.referer;
 
   if (origin && origin.match(/localhost/gi)) {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader(
       "Access-Control-Allow-Methods",
