@@ -1,0 +1,9 @@
+.todo {
+  font-size: 24px;
+  padding: 1rem;
+  background-color: #2980b9;
+  color: #ecf0f1;
+  cursor: pointer;
+  border-radius: 16px;
+  text-decoration: none;
+}

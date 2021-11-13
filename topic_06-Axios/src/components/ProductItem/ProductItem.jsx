@@ -2,6 +2,14 @@ import React from "react";
 import "./ProductItem.css";
 
 const ProductItem = (props) => {
+  const likeProductHandler = () => {
+    props.onLikeProduct(props.id);
+  };
+
+  const deleteProductHandler = () => {
+    props.onDeleteProduct(props.id);
+  };
+
   return (
     <div className="product-card">
       <img src={props.image} alt="" />
@@ -17,8 +25,12 @@ const ProductItem = (props) => {
         </div>
       </div>
       <div className="product-actions">
-          <button className="btn">Like</button>
-          <button className="btn">Delete</button>
+        <button className="btn" onClick={likeProductHandler}>
+          Like
+        </button>
+        <button className="btn" onClick={deleteProductHandler}>
+          Delete
+        </button>
       </div>
     </div>
   );
