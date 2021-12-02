@@ -12,7 +12,8 @@ Components are the main building block for Angular applications. Each component 
 Every component is a class with a @Component decorator.
 The base syntax should look like this:
 
-```@Component({
+```
+@Component({
   selector: 'app-component-overview',
   templateUrl: './component-overview.component.html',
   styleUrls: ['./component-overview.component.css']
